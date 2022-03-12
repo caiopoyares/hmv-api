@@ -4,6 +4,8 @@ import {
   IsNotEmpty,
   IsNumberString,
   IsString,
+  MaxLength,
+  MinLength,
 } from 'class-validator';
 import { Role } from 'src/enums/roles.enum';
 
@@ -18,6 +20,8 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   @IsNumberString()
+  @MinLength(11)
+  @MaxLength(11)
   cpf: string;
 
   @IsNotEmpty()

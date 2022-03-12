@@ -7,6 +7,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './users.dto';
 import { User } from './users.entity';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -42,17 +43,27 @@ export class UsersService {
     return user;
   }
 
-  async add(userDto: CreateUserDto): Promise<User> {
+  async add(userDto: CreateUserDto): Promise<Omit<User, 'password'>> {
     const user = await this.usersRepository.findOne({
       where: [{ email: userDto.email }, { cpf: userDto.cpf }],
     });
 
     if (user) throw new BadRequestException('User cpf or email already exists');
 
-    return this.usersRepository.save(userDto);
+    const hashedPassword = await bcrypt.hash(userDto.password, 10);
+    userDto.password = hashedPassword;
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...restOfUser } = await this.usersRepository.save(
+      userDto,
+    );
+    return { ...restOfUser };
   }
 
   async remove(id: string): Promise<void> {
+    const user = await this.usersRepository.findOne(id);
+    if (!user) throw new NotFoundException();
+
     await this.usersRepository.delete(id);
   }
 }
