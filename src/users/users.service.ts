@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './users.dto';
@@ -11,7 +15,12 @@ export class UsersService {
   ) {}
 
   async findOne(id: string): Promise<User> {
-    return this.usersRepository.findOne(id);
+    const user = await this.usersRepository.findOne(id);
+
+    if (!user)
+      throw new NotFoundException(`A user with id of ${id} hasn't been found.`);
+
+    return user;
   }
 
   async findAll(): Promise<User[]> {
@@ -19,13 +28,27 @@ export class UsersService {
   }
 
   async findByCpf(cpf: string): Promise<User> {
-    return this.usersRepository.findOne({
+    const user = this.usersRepository.findOne({
       where: { cpf },
-      select: ['id', 'firstName', 'lastName', 'cpf', 'password'],
+      select: ['id', 'firstName', 'lastName', 'cpf', 'type', 'password'],
     });
+
+    if (!user) {
+      throw new NotFoundException(
+        `A user with cpf of ${cpf} hasn't been found.`,
+      );
+    }
+
+    return user;
   }
 
   async add(userDto: CreateUserDto): Promise<User> {
+    const user = await this.usersRepository.findOne({
+      where: [{ email: userDto.email }, { cpf: userDto.cpf }],
+    });
+
+    if (user) throw new BadRequestException('User cpf or email already exists');
+
     return this.usersRepository.save(userDto);
   }
 

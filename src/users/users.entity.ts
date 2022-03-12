@@ -1,3 +1,4 @@
+import { Role } from 'src/enums/roles.enum';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -10,6 +11,9 @@ export class User {
 
   @Column()
   lastName: string;
+
+  @Column()
+  type: Role;
 
   @Column({ unique: true })
   cpf: string;

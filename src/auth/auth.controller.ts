@@ -1,6 +1,6 @@
 import { Controller, Post, UseGuards, Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { Public } from '../public.decorator';
+import { Public } from '../decorators/public.decorator';
 import { AuthService } from './auth.service';
 
 @Controller('auth')

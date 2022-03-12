@@ -1,11 +1,12 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Roles } from '../decorators/roles.decorator';
+import { Role } from '../enums/roles.enum';
 import { CreateUserDto } from './users.dto';
 import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
-
   @Get()
   getUsers() {
     return this.usersService.findAll();
@@ -16,8 +17,15 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
+  @Roles(Role.Patient, Role.Attendant)
   @Post()
   addUser(@Body() createUserDto: CreateUserDto) {
     return this.usersService.add(createUserDto);
+  }
+
+  @Roles(Role.Attendant)
+  @Delete()
+  deleteUser(@Param('id') id: string) {
+    return this.usersService.remove(id);
   }
 }
