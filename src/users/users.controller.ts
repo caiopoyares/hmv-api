@@ -18,9 +18,7 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
-  // @Roles(Role.Patient, Role.Attendant)
-  // at least for now, this endpoint will be public, but we must lock it before going production
-  @Public()
+  @Roles(Role.Patient, Role.Attendant)
   @Post()
   addUser(@Body() createUserDto: CreateUserDto) {
     return this.usersService.add(createUserDto);
