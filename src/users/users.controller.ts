@@ -1,5 +1,4 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
-import { Public } from 'src/decorators/public.decorator';
 import { Roles } from '../decorators/roles.decorator';
 import { Role } from '../enums/roles.enum';
 import { CreateUserDto } from './users.dto';
