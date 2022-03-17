@@ -7,6 +7,7 @@ import { JwtAuthGuard } from './guards/jwt.guard';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RolesGuard } from './guards/roles.guard';
 import { HospitalModule } from './hospital/hospital.module';
+import { DoctorModule } from './doctor/doctor.module';
 
 export const Public = () => SetMetadata('isPublic', true);
 
@@ -26,7 +27,8 @@ export const Public = () => SetMetadata('isPublic', true);
     }),
     AuthModule,
     UsersModule,
-    HospitalModule
+    HospitalModule,
+    DoctorModule
   ],
   providers: [
     {
