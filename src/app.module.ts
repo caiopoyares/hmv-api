@@ -28,7 +28,7 @@ export const Public = () => SetMetadata('isPublic', true);
     AuthModule,
     UsersModule,
     HospitalModule,
-    DoctorModule
+    DoctorModule,
   ],
   providers: [
     {

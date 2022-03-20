@@ -3,6 +3,7 @@ import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '../users/users.entity';
 import * as bcrypt from 'bcrypt';
+import { Role } from 'src/enums/roles.enum';
 
 @Injectable()
 export class AuthService {
@@ -17,7 +18,8 @@ export class AuthService {
   ): Promise<Omit<User, 'password'>> {
     const user = await this.usersService.findByCpf(userCpf);
     const isMatch = await bcrypt.compare(password, user.password);
-    if (user && isMatch) {
+    const isAttendant = user.type === Role.Attendant;
+    if (user && isMatch && isAttendant) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password: pass, ...result } = user;
       return result;
