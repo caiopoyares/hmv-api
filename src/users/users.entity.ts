@@ -1,5 +1,6 @@
+import { EmergencyInfo } from 'src/emergencyInfo/emergencyInfo.entity';
 import { Role } from 'src/enums/roles.enum';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity()
 export class User {
@@ -26,4 +27,7 @@ export class User {
 
   @Column({ default: true })
   isActive: boolean;
+  
+  @OneToMany(type => EmergencyInfo, emergencyInfo => emergencyInfo.user)
+  emergencyInfo : EmergencyInfo[]
 }

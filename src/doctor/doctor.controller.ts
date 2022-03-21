@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { Roles } from '../decorators/roles.decorator';
 import { Role } from '../enums/roles.enum';
-import { CreateDoctorDto } from './doctor.dto';
+import { CreateDoctorDto, UpdateDoctorDto } from './doctor.dto';
 import { DoctorService } from './doctor.service';
 
 @Controller('doctor')
@@ -25,8 +25,8 @@ export class DoctorController {
 
   @Roles(Role.Attendant)
   @Put(":id")
-  updateDoctor(@Param('id') id: string, @Body() createDoctorDto: CreateDoctorDto) {
-    return this.doctorService.update(id, createDoctorDto);
+  updateDoctor(@Param('id') id: string, @Body() updateDoctorDto: UpdateDoctorDto) {
+    return this.doctorService.update(id, updateDoctorDto);
   }
 
   @Roles(Role.Attendant)
