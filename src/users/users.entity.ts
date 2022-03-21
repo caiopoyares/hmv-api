@@ -19,6 +19,9 @@ export class User {
   @Column({ unique: true })
   cpf: string;
 
+  @Column()
+  birthDate: string;
+
   @Column({ unique: true })
   email: string;
 

@@ -1,7 +1,15 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { Roles } from '../decorators/roles.decorator';
 import { Role } from '../enums/roles.enum';
-import { CreateHospitalDto } from './hospital.dto';
+import { CreateHospitalDto, UpdateHospitalDto } from './hospital.dto';
 import { HospitalService } from './hospital.service';
 
 @Controller('hospital')
@@ -24,9 +32,12 @@ export class HospitalController {
   }
 
   @Roles(Role.Attendant)
-  @Put(":id")
-  updateHospital(@Param('id') id: string, @Body() createHospitalDto: CreateHospitalDto) {
-    return this.hospitalService.update(id, createHospitalDto);
+  @Put(':id')
+  updateHospital(
+    @Param('id') id: string,
+    @Body() updateHospitalDto: UpdateHospitalDto,
+  ) {
+    return this.hospitalService.update(id, updateHospitalDto);
   }
 
   @Roles(Role.Attendant)
@@ -34,5 +45,4 @@ export class HospitalController {
   deleteUser(@Param('id') id: string) {
     return this.hospitalService.remove(id);
   }
-  
 }
