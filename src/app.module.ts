@@ -9,6 +9,7 @@ import { RolesGuard } from './guards/roles.guard';
 import { HospitalModule } from './hospital/hospital.module';
 import { DoctorModule } from './doctor/doctor.module';
 import { EmergencyInfoModule } from './emergencyInfo/emergencyInfo.module';
+import { EmergencyOrderModule } from './emergency-order/emergency-order.module';
 
 export const Public = () => SetMetadata('isPublic', true);
 
@@ -30,7 +31,8 @@ export const Public = () => SetMetadata('isPublic', true);
     UsersModule,
     HospitalModule,
     DoctorModule,
-    EmergencyInfoModule
+    EmergencyInfoModule,
+    EmergencyOrderModule
   ],
   providers: [
     {

@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { EmergencyOrder } from '../emergency-order/emergency-order.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class Hospital {
@@ -13,4 +14,7 @@ export class Hospital {
 
   @Column()
   telephone: string;
+
+  @OneToMany(() => EmergencyOrder, (emergencyOrder) => emergencyOrder.hospital)
+  emergencyOrders: EmergencyOrder[];
 }

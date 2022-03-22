@@ -1,6 +1,7 @@
+import { EmergencyOrder } from 'src/emergency-order/emergency-order.entity';
 import { EmergencyInfo } from 'src/emergencyInfo/emergencyInfo.entity';
 import { Role } from 'src/enums/roles.enum';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class User {
@@ -19,7 +20,7 @@ export class User {
   @Column({ unique: true })
   cpf: string;
 
-  @Column()
+  @Column({ nullable: true })
   birthDate: string;
 
   @Column({ unique: true })
@@ -28,9 +29,9 @@ export class User {
   @Column({ select: true })
   password: string;
 
-  @Column({ default: true })
-  isActive: boolean;
-  
-  @OneToMany(type => EmergencyInfo, emergencyInfo => emergencyInfo.user)
-  emergencyInfo : EmergencyInfo[]
+  @OneToMany(() => EmergencyInfo, (emergencyInfo) => emergencyInfo.user)
+  emergencyInfo: EmergencyInfo[];
+
+  @OneToMany(() => EmergencyOrder, (emergencyOrder) => emergencyOrder.user)
+  emergencyOrders: EmergencyOrder[];
 }
