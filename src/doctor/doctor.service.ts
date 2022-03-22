@@ -4,7 +4,7 @@ import {
   } from '@nestjs/common';
   import { InjectRepository } from '@nestjs/typeorm';
   import { Repository } from 'typeorm';
-  import { CreateDoctorDto } from './doctor.dto';
+  import { CreateDoctorDto, UpdateDoctorDto } from './doctor.dto';
   import { Doctor } from './doctor.entity';
   
   @Injectable()
@@ -30,19 +30,14 @@ import {
         return await this.doctorRepository.save(doctorDto);
     }
 
-    async update(id: string, createDoctorDto: CreateDoctorDto): Promise<Doctor> {
+    async update(id: string, doctorDto: UpdateDoctorDto): Promise<Doctor> {
       const doctor = await this.doctorRepository.findOne(id);
 
       if (!doctor) throw new NotFoundException();
 
-      doctor.name = createDoctorDto.name;
-      doctor.area = createDoctorDto.area;
-      doctor.speciality = createDoctorDto.speciality;
-      doctor.phone = createDoctorDto.phone;
+      await this.doctorRepository.update(id, doctorDto);
 
-      await this.doctorRepository.update(id, doctor);
-
-      return doctor;
+      return {...doctor, ...doctorDto};
     }
   
     async remove(id: string): Promise<void> {
