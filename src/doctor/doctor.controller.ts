@@ -12,7 +12,7 @@ import { Role } from '../enums/roles.enum';
 import { CreateDoctorDto, UpdateDoctorDto } from './doctor.dto';
 import { DoctorService } from './doctor.service';
 
-@Controller('doctor')
+@Controller('doctors')
 export class DoctorController {
   constructor(private doctorService: DoctorService) {}
   @Get()

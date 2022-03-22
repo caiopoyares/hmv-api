@@ -10,7 +10,10 @@ export class Doctor {
   crm: number;
 
   @Column()
-  name: string;
+  firstName: string;
+
+  @Column()
+  lastName: string;
 
   @Column()
   area: string;

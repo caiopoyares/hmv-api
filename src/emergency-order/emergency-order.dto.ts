@@ -10,21 +10,21 @@ import {
 export class CreateEmergencyOrderDto {
   @IsNotEmpty()
   @IsString()
-  pacientFirstName: string;
+  patientFirstName: string;
 
   @IsNotEmpty()
   @IsString()
-  pacientLastName: string;
+  patientLastName: string;
 
   @IsNotEmpty()
   @IsNumberString()
   @MinLength(11)
   @MaxLength(11)
-  pacientCPF: string;
+  patientCPF: string;
 
   @IsNotEmpty()
   @IsEmail()
-  pacientEmail: string;
+  patientEmail: string;
 
   @IsNotEmpty()
   @IsNumberString()

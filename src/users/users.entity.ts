@@ -1,5 +1,5 @@
 import { EmergencyOrder } from 'src/emergency-order/emergency-order.entity';
-import { EmergencyInfo } from 'src/emergencyInfo/emergencyInfo.entity';
+import { EmergencyInfo } from 'src/emergency-info/emergency-info.entity';
 import { Role } from 'src/enums/roles.enum';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 

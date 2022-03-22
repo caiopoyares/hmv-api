@@ -1,5 +1,6 @@
-import { IsString } from 'class-validator';
+import { IsEnum, IsString } from 'class-validator';
 import { Doctor } from 'src/doctor/doctor.entity';
+import { EmergencyOrderStatus } from 'src/enums/emergency-order-status.enum';
 import { Hospital } from 'src/hospital/hospital.entity';
 import { User } from 'src/users/users.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
@@ -34,9 +35,9 @@ export class EmergencyOrder {
   @IsString()
   reason: string;
 
-  @Column()
+  @Column({ type: 'text' })
   @IsString()
-  details: string;
+  description: string;
 
   @Column({ nullable: true })
   @IsString()
@@ -45,4 +46,7 @@ export class EmergencyOrder {
   @Column({ nullable: true })
   @IsString()
   returnAfter: string;
+
+  @Column()
+  status: EmergencyOrderStatus;
 }

@@ -8,7 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { RolesGuard } from './guards/roles.guard';
 import { HospitalModule } from './hospital/hospital.module';
 import { DoctorModule } from './doctor/doctor.module';
-import { EmergencyInfoModule } from './emergencyInfo/emergencyInfo.module';
+import { EmergencyInfoModule } from './emergency-info/emergency-info.module';
 import { EmergencyOrderModule } from './emergency-order/emergency-order.module';
 
 export const Public = () => SetMetadata('isPublic', true);
@@ -32,7 +32,7 @@ export const Public = () => SetMetadata('isPublic', true);
     HospitalModule,
     DoctorModule,
     EmergencyInfoModule,
-    EmergencyOrderModule
+    EmergencyOrderModule,
   ],
   providers: [
     {
