@@ -1,6 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { use } from 'passport';
 import { User } from 'src/users/users.entity';
 import { Repository } from 'typeorm';
 import { CreateEmergencyInfoDto } from './emergency-info.dto';
@@ -19,7 +18,7 @@ export class EmergencyInfoService {
 
     if (!emergencyInfo)
       throw new NotFoundException(
-        `An emergency order with id of ${id} hasn't been found.`,
+        `An emergency info with id of ${id} hasn't been found.`,
       );
 
     return emergencyInfo;
@@ -44,7 +43,7 @@ export class EmergencyInfoService {
 
     createEmergencyInfoDto.user = user;
 
-    return await this.emergencyInfoRepository.save(createEmergencyInfoDto);
+    return this.emergencyInfoRepository.save(createEmergencyInfoDto);
   }
 
   async remove(id: string): Promise<void> {

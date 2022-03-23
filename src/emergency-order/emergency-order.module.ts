@@ -6,10 +6,11 @@ import { EmergencyOrder } from './emergency-order.entity';
 import { User } from 'src/users/users.entity';
 import { Hospital } from 'src/hospital/hospital.entity';
 import { UsersModule } from 'src/users/users.module';
+import { Doctor } from 'src/doctor/doctor.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([EmergencyOrder, User, Hospital]),
+    TypeOrmModule.forFeature([EmergencyOrder, User, Hospital, Doctor]),
     UsersModule,
   ],
   providers: [EmergencyOrderService],
