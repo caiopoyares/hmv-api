@@ -2,6 +2,7 @@ import {
   IsEmail,
   IsEnum,
   IsNotEmpty,
+  IsNumber,
   IsNumberString,
   IsString,
   MaxLength,
@@ -31,6 +32,10 @@ export class CreateUserDto {
   @IsNotEmpty()
   @IsEnum(Role)
   type: Role;
+
+  @IsNotEmpty()
+  @IsNumber()
+  age: number;
 
   @IsNotEmpty()
   @IsString()

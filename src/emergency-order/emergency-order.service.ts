@@ -24,11 +24,15 @@ export class EmergencyOrderService {
   ) {}
 
   async findAll(): Promise<EmergencyOrder[]> {
-    return this.emergencyOrderRepository.find();
+    return this.emergencyOrderRepository.find({
+      relations: ['user', 'hospital', 'doctor'],
+    });
   }
 
   async findOne(id: string): Promise<EmergencyOrder> {
-    const emergencyOrder = await this.emergencyOrderRepository.findOne(id);
+    const emergencyOrder = await this.emergencyOrderRepository.findOne(id, {
+      relations: ['user', 'hospital', 'doctor'],
+    });
 
     if (!emergencyOrder)
       throw new NotFoundException(
@@ -58,6 +62,7 @@ export class EmergencyOrderService {
       patientLastName,
       patientCPF,
       patientEmail,
+      patientAge,
       arrivalDate,
       arrivalTime,
       hospitalId,
@@ -76,6 +81,7 @@ export class EmergencyOrderService {
         lastName: patientLastName,
         cpf: patientCPF,
         email: patientEmail,
+        age: patientAge,
         type: Role.Patient,
         password,
       };

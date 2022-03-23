@@ -20,8 +20,8 @@ export class User {
   @Column({ unique: true })
   cpf: string;
 
-  @Column({ nullable: true })
-  birthDate: string;
+  @Column()
+  age: number;
 
   @Column({ unique: true })
   email: string;

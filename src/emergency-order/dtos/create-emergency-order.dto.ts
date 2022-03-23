@@ -2,6 +2,7 @@ import {
   IsEmail,
   IsNotEmpty,
   IsNumberString,
+  IsNumber,
   IsString,
   MaxLength,
   MinLength,
@@ -25,6 +26,10 @@ export class CreateEmergencyOrderDto {
   @IsNotEmpty()
   @IsEmail()
   patientEmail: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  patientAge: number;
 
   @IsNotEmpty()
   @IsNumberString()
