@@ -71,7 +71,7 @@ export class EmergencyOrderService {
     } = dto;
 
     let user = await this.userRepository.findOne({
-      where: { cpf: patientCPF },
+      where: { cpf: patientCPF, type: Role.Patient },
     });
 
     if (!user) {
@@ -81,7 +81,7 @@ export class EmergencyOrderService {
         lastName: patientLastName,
         cpf: patientCPF,
         email: patientEmail,
-        age: patientAge,
+        age: parseInt(patientAge),
         type: Role.Patient,
         password,
       };
@@ -102,7 +102,7 @@ export class EmergencyOrderService {
   }
 
   async finishEmergencyOrder(orderId: string, dto: FinishEmergencyOrderDto) {
-    const { doctorId, finishDate, suggestions, returnAfter } = dto;
+    const { doctorId, finishDate, suggestions, weeksUntilReturn } = dto;
 
     const emergencyOrder = await this.emergencyOrderRepository.findOne(orderId);
 
@@ -116,7 +116,7 @@ export class EmergencyOrderService {
     const updatedOrder = {
       ...emergencyOrder,
       doctor,
-      returnAfter,
+      weeksUntilReturn,
       suggestions,
       finishDate,
       status: EmergencyOrderStatus.Complete,

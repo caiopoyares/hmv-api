@@ -1,4 +1,4 @@
-import { IsEnum, IsString } from 'class-validator';
+import { IsEnum, IsNumberString, IsString } from 'class-validator';
 import { Doctor } from 'src/doctor/doctor.entity';
 import { EmergencyOrderStatus } from 'src/enums/emergency-order-status.enum';
 import { Hospital } from 'src/hospital/hospital.entity';
@@ -44,8 +44,8 @@ export class EmergencyOrder {
   suggestions: string;
 
   @Column({ nullable: true })
-  @IsString()
-  returnAfter: string;
+  @IsNumberString()
+  weeksUntilReturn: string;
 
   @Column()
   status: EmergencyOrderStatus;

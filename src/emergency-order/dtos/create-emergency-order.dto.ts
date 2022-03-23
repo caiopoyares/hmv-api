@@ -28,8 +28,8 @@ export class CreateEmergencyOrderDto {
   patientEmail: string;
 
   @IsNotEmpty()
-  @IsNumber()
-  patientAge: number;
+  @IsNumberString()
+  patientAge: string;
 
   @IsNotEmpty()
   @IsNumberString()
