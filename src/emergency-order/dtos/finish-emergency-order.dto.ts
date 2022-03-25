@@ -1,13 +1,14 @@
-import { IsNotEmpty, IsNumberString, IsString } from 'class-validator';
+import {
+  IsDateString,
+  IsNotEmpty,
+  IsNumberString,
+  IsString,
+} from 'class-validator';
 
 export class FinishEmergencyOrderDto {
   @IsNotEmpty()
-  @IsString()
-  finishDate: string;
-
-  @IsNotEmpty()
-  @IsString()
-  finishTime: string;
+  @IsDateString()
+  finishDate: Date;
 
   @IsNotEmpty()
   @IsNumberString()

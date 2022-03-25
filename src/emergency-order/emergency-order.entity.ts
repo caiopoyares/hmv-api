@@ -1,4 +1,4 @@
-import { IsEnum, IsNumberString, IsString } from 'class-validator';
+import { IsDate, IsNumber, IsNumberString, IsString } from 'class-validator';
 import { Doctor } from 'src/doctor/doctor.entity';
 import { EmergencyOrderStatus } from 'src/enums/emergency-order-status.enum';
 import { Hospital } from 'src/hospital/hospital.entity';
@@ -19,17 +19,13 @@ export class EmergencyOrder {
   @ManyToOne(() => Doctor, (doctor) => doctor.emergencyOrders)
   doctor: Doctor;
 
-  @Column()
-  @IsString()
-  arrivalDate: string;
-
-  @Column()
-  @IsString()
-  arrivalTime: string;
+  @Column({ nullable: true })
+  @IsDate()
+  arrivalDate: Date;
 
   @Column({ nullable: true })
-  @IsString()
-  finishDate: string;
+  @IsDate()
+  finishDate: Date;
 
   @Column()
   @IsString()
@@ -44,8 +40,8 @@ export class EmergencyOrder {
   suggestions: string;
 
   @Column({ nullable: true })
-  @IsNumberString()
-  weeksUntilReturn: string;
+  @IsNumber()
+  weeksUntilReturn: number;
 
   @Column()
   status: EmergencyOrderStatus;

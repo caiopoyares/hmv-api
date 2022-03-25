@@ -2,10 +2,10 @@ import {
   IsEmail,
   IsNotEmpty,
   IsNumberString,
-  IsNumber,
   IsString,
   MaxLength,
   MinLength,
+  IsDateString,
 } from 'class-validator';
 
 export class CreateEmergencyOrderDto {
@@ -36,12 +36,8 @@ export class CreateEmergencyOrderDto {
   hospitalId: string;
 
   @IsNotEmpty()
-  @IsString()
-  arrivalDate: string;
-
-  @IsNotEmpty()
-  @IsString()
-  arrivalTime: string;
+  @IsDateString()
+  arrivalDate: Date;
 
   @IsNotEmpty()
   @IsString()

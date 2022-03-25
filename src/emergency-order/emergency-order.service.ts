@@ -64,7 +64,6 @@ export class EmergencyOrderService {
       patientEmail,
       patientAge,
       arrivalDate,
-      arrivalTime,
       hospitalId,
       reason,
       description,
@@ -95,7 +94,6 @@ export class EmergencyOrderService {
       user,
       hospital,
       arrivalDate,
-      arrivalTime,
       reason,
       description,
     });
@@ -116,7 +114,7 @@ export class EmergencyOrderService {
     const updatedOrder = {
       ...emergencyOrder,
       doctor,
-      weeksUntilReturn,
+      weeksUntilReturn: parseInt(weeksUntilReturn),
       suggestions,
       finishDate,
       status: EmergencyOrderStatus.Complete,
