@@ -1,6 +1,6 @@
-import { EmergencyOrder } from 'src/emergency-order/emergency-order.entity';
-import { EmergencyInfo } from 'src/emergency-info/emergency-info.entity';
-import { Role } from 'src/enums/roles.enum';
+import { EmergencyOrder } from '../emergency-order/emergency-order.entity';
+import { EmergencyInfo } from '../emergency-info/emergency-info.entity';
+import { Role } from '../enums/roles.enum';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()

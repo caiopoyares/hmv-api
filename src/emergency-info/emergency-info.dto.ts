@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
-import { User } from 'src/users/users.entity';
+import { User } from '../users/users.entity';
 
 export class CreateEmergencyInfoDto {
   @IsNotEmpty()

@@ -4,11 +4,11 @@ import { Repository } from 'typeorm';
 import { CreateEmergencyOrderDto, FinishEmergencyOrderDto } from './dtos';
 import { EmergencyOrder } from './emergency-order.entity';
 import { User } from '../users/users.entity';
-import { Role } from 'src/enums/roles.enum';
-import { Hospital } from 'src/hospital/hospital.entity';
-import { generateRandomPassword } from 'src/helpers';
-import { EmergencyOrderStatus } from 'src/enums/emergency-order-status.enum';
-import { Doctor } from 'src/doctor/doctor.entity';
+import { Role } from '../enums/roles.enum';
+import { Hospital } from '../hospital/hospital.entity';
+import { generateRandomPassword } from '../helpers';
+import { EmergencyOrderStatus } from '../enums/emergency-order-status.enum';
+import { Doctor } from '../doctor/doctor.entity';
 
 @Injectable()
 export class EmergencyOrderService {

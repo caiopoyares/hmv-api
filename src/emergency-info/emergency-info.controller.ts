@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
-import { Roles } from 'src/decorators/roles.decorator';
-import { Role } from 'src/enums/roles.enum';
+import { Roles } from '../decorators/roles.decorator';
+import { Role } from '../enums/roles.enum';
 import { CreateEmergencyInfoDto } from './emergency-info.dto';
 import { EmergencyInfoService } from './emergency-info.service';
 

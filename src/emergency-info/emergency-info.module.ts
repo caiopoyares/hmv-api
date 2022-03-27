@@ -3,14 +3,11 @@ import { EmergencyInfoService } from './emergency-info.service';
 import { EmergencyInfoController } from './emergency-info.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EmergencyInfo } from './emergency-info.entity';
-import { UsersService } from 'src/users/users.service';
-import { User } from 'src/users/users.entity';
+import { UsersService } from '../users/users.service';
+import { User } from '../users/users.entity';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([EmergencyInfo]),
-    TypeOrmModule.forFeature([User]),
-  ],
+  imports: [TypeOrmModule.forFeature([EmergencyInfo, User])],
   providers: [EmergencyInfoService, UsersService],
   exports: [EmergencyInfoService],
   controllers: [EmergencyInfoController],

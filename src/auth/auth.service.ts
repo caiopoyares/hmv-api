@@ -3,7 +3,7 @@ import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '../users/users.entity';
 import * as bcrypt from 'bcrypt';
-import { Role } from 'src/enums/roles.enum';
+import { Role } from '../enums/roles.enum';
 
 @Injectable()
 export class AuthService {

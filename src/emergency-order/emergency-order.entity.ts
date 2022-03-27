@@ -1,8 +1,8 @@
-import { IsDate, IsNumber, IsNumberString, IsString } from 'class-validator';
-import { Doctor } from 'src/doctor/doctor.entity';
-import { EmergencyOrderStatus } from 'src/enums/emergency-order-status.enum';
-import { Hospital } from 'src/hospital/hospital.entity';
-import { User } from 'src/users/users.entity';
+import { IsDate, IsNumber, IsString } from 'class-validator';
+import { Doctor } from '../doctor/doctor.entity';
+import { EmergencyOrderStatus } from '../enums/emergency-order-status.enum';
+import { Hospital } from '../hospital/hospital.entity';
+import { User } from '../users/users.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
